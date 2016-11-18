@@ -1,0 +1,45 @@
+# vim: filetype=gitconfig
+
+[core]
+    autocrlf = false
+
+[alias]
+    st = status
+    co = commit
+    lg = log --graph --all --format=format:'%C(blue)%h%C(reset) - %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)%C(yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(white)— %an%C(reset)' --abbrev-commit
+    oneday = log --graph --all --format=format:'%C(blue)%h%C(reset) - %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)%C(yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(white)— %an%C(reset)' --abbrev-commit --since='1 day ago'
+
+    lasttag = "!bash -c 'git tag | cut -dv -f 2 | sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n | tail -n 1'"
+    lt      = "!bash -c 'git tag | cut -dv -f 2 | sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n | tail -n 1'"
+    composer = commit -m 'update composer' composer.*
+    pushtags = push --tags
+    ptom = push origin master --tags
+    # cleanbranch = "!bash -c 'git fetch --prune && git branch --merged | grep -v \"\*\" | xargs -n 1 git branch -d'"
+
+[color]
+    ui = auto
+
+[help]
+    autocorrect = 1
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red•
+    new = cyan
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+
+[url "git@github.com:"]
+    insteadOf = gh:
+[url "git@bitbucket.org:"]
+    insteadOf = bb:
