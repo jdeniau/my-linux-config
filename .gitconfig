@@ -1,7 +1,7 @@
 # vim: filetype=gitconfig
 
 [core]
-    autocrlf = false
+    autocrlf = input
 
 [alias]
     st = status
