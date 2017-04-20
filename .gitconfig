@@ -30,7 +30,7 @@
 [color "diff"]
     meta = yellow bold
     frag = magenta bold
-    old = red•
+    old = red
     new = cyan
 
 [color "status"]
