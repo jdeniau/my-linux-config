@@ -6,19 +6,17 @@ alias cde='cd ~/code/entities/'
 alias cdt='cd ~/code/ticketing/'
 alias cdw='cd ~/code/website/'
 
-alias gi=git
 alias g=git
-alias v='vim .'
+if [ -x "$(command -v nvim)" ]; then
+    alias v='nvim .'
+else
+    alias v='vim .'
+fi
 
 alias upython='ipython -i ~/.ipythonrc.py'
 alias pip='pip --trusted-host devpi.mapado.com'
 
 alias sfcc='sf cache:clear'
-
-alias gassetic='gassetic --port=51725'
-
-export PATH=$PATH:$HOME/.npm_packages/bin
-
 
 update_auth_sock() {
     local socket_path="$(tmux show-environment | sed -n 's/^SSH_AUTH_SOCK=//p')"
@@ -32,3 +30,22 @@ update_auth_sock() {
 }
 
 update_auth_sock
+
+if [ -x "$(command -v npm)" ]; then                                                                                                                     
+    export PATH=$PATH:$(npm bin)                                                                                                                        
+fi                                                                                                                                                      
+if [ -x "$(command -v yarn)" ]; then                                                                                                                    
+    export PATH=$PATH:$(yarn bin)                                                                                                                       
+fi                                                                                                                                                      
+if [ -x "$(command -v composer)" ]; then                                                                                                                
+    export PATH=$PATH:~/.composer/$(composer global config bin-dir)                                                                                     
+                                                                                                                                                        
+    if [ -f "composer.json" ]; then                                                                                                                     
+        export PATH=$PATH:$(composer config bin-dir)                                                                                                    
+    fi                                                                                                                                                  
+fi
+
+zstyle :omz:plugins:ssh-agent identities id_ed25519                                                                                                     
+                                                                                                                                                        
+plugins=(ssh-agent)
+source "/etc/zsh/plugins/oh-my-zsh/oh-my-zsh.sh"
