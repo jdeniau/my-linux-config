@@ -31,22 +31,19 @@ update_auth_sock() {
 
 update_auth_sock
 
-if [ -x "$(command -v npm)" ]; then                                                                                                                     
-    export PATH=$PATH:$(npm bin)                                                                                                                        
-fi                                                                                                                                                      
-if [ -x "$(command -v yarn)" ]; then                                                                                                                    
-    export PATH=$PATH:$(yarn bin)                                                                                                                       
-fi                                                                                                                                                      
-
-if [ -x "$(command -v composer)" ]; then                                                                                                                
-    if [ -f "composer.json" ]; then                                                                                                                     
-        export PATH=$PATH:$(composer config bin-dir)                                                                                                    
-    fi                                                                                                                                                  
-                                                                                                                                                        
-    export PATH=$PATH:~/.composer/$(composer global config bin-dir 2> /dev/null)                                                                        
+if [ -x "$(command -v npm)" ]; then
+    export PATH=$PATH:$(npm bin)
+fi
+if [ -x "$(command -v yarn)" ]; then
+    export PATH=$PATH:$(yarn bin)
 fi
 
-zstyle :omz:plugins:ssh-agent identities id_ed25519                                                                                                     
-                                                                                                                                                        
+if [ -x "$(command -v composer)" ]; then
+    export PATH=$PATH:~/.composer/$(composer global config bin-dir 2> /dev/null)
+    export PATH=./bin:./vendor/bin:$PATH
+fi
+
+zstyle :omz:plugins:ssh-agent identities id_ed25519
+
 plugins=(ssh-agent)
 source "/etc/zsh/plugins/oh-my-zsh/oh-my-zsh.sh"
