@@ -37,12 +37,13 @@ fi
 if [ -x "$(command -v yarn)" ]; then                                                                                                                    
     export PATH=$PATH:$(yarn bin)                                                                                                                       
 fi                                                                                                                                                      
+
 if [ -x "$(command -v composer)" ]; then                                                                                                                
-    export PATH=$PATH:~/.composer/$(composer global config bin-dir)                                                                                     
-                                                                                                                                                        
     if [ -f "composer.json" ]; then                                                                                                                     
         export PATH=$PATH:$(composer config bin-dir)                                                                                                    
     fi                                                                                                                                                  
+                                                                                                                                                        
+    export PATH=$PATH:~/.composer/$(composer global config bin-dir 2> /dev/null)                                                                        
 fi
 
 zstyle :omz:plugins:ssh-agent identities id_ed25519                                                                                                     
