@@ -31,6 +31,37 @@ update_auth_sock() {
 
 update_auth_sock
 
+function git-branch-delete {
+    if [ ! -d .git ]
+    then
+        echo "${fg[green]}Not a Git Repository${reset_color}"
+        return
+    fi
+
+    currentbranch=`git branch | grep "^* " | sed "s/* //"`
+    if [ $1 ]
+    then
+        todelbranch=$1
+        gotobranch=$currentbranch
+    else
+        todelbranch=$currentbranch
+        gotobranch="master"
+    fi
+
+    if [ "$todelbranch" = "master" ]
+    then
+        echo "${fg[green]}You can not delete branch master${reset_color}"
+        return
+    fi
+
+    git checkout master
+    git fetch --prune
+    git merge origin/master
+    git branch -d $todelbranch
+    git push origin --delete $todelbranch
+    git checkout $gotobranch
+}
+
 if [ -x "$(command -v npm)" ]; then
     export PATH=$PATH:$(npm bin)
 fi
