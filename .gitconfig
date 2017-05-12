@@ -14,7 +14,7 @@
     composer = commit -m 'update composer' composer.*
     pushtags = push --tags
     ptom = push origin master --tags
-    # cleanbranch = "!bash -c 'git fetch --prune && git branch --merged | grep -v \"\*\" | xargs -n 1 git branch -d'"
+    syncbr = "!bash -c 'git fetch --prune && git branch --merged| grep -v master | xargs -n 1 git branch -d'"
 
 [color]
     ui = auto
