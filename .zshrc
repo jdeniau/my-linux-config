@@ -16,7 +16,11 @@ fi
 alias upython='ipython -i ~/.ipythonrc.py'
 alias pip='pip --trusted-host devpi.mapado.com'
 
-alias sfcc='sf cache:clear'
+_symfony_console () {
+    echo "php $(find . -maxdepth 2 -mindepth 1 -name 'console' -type f | head -n 1)"
+}
+
+alias sfcc='$(_symfony_console) cache:clear'
 
 update_auth_sock() {
     local socket_path="$(tmux show-environment | sed -n 's/^SSH_AUTH_SOCK=//p')"
@@ -62,6 +66,8 @@ function git-branch-delete {
     git checkout $gotobranch
 }
 
+stty -ixon
+
 if [ -x "$(command -v npm)" ]; then
     export PATH=$PATH:$(npm bin)
 fi
@@ -74,6 +80,7 @@ if [ -x "$(command -v composer)" ]; then
     export PATH=./bin:./vendor/bin:$PATH
 fi
 
+# zstyle :omz:plugins:ssh-agent lifetime 4h
 zstyle :omz:plugins:ssh-agent identities id_ed25519
 
 plugins=(ssh-agent)
