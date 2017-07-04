@@ -68,11 +68,8 @@ function git-branch-delete {
 
 stty -ixon
 
-if [ -x "$(command -v npm)" ]; then
-    export PATH=$PATH:$(npm bin)
-fi
-if [ -x "$(command -v yarn)" ]; then
-    export PATH=$PATH:$(yarn bin)
+if [ -x "$(command -v npm)" ] || [ -x "$(command -v yarn)" ]; then
+    export PATH=$PATH:./node_modules/bin
 fi
 
 if [ -x "$(command -v composer)" ]; then
