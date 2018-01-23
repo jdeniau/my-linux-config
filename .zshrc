@@ -1,3 +1,7 @@
+export ZSH=$HOME/.oh-my-zsh
+
+ZSH_THEME="ys"
+
 alias cup='composer update'
 alias cin='composer install'
 alias ccat='pygmentize -O style=monokai -f console256 -g'
@@ -77,8 +81,41 @@ if [ -x "$(command -v composer)" ]; then
     export PATH=./bin:./vendor/bin:$PATH
 fi
 
+if [ -d ~/bin/android-sdk-linux/ ]; then
+    export ANDROID_HOME=~/bin/android-sdk-linux/
+    export PATH=$PATH:~/bin/android-sdk-linux/tools
+    export PATH=$PATH:~/bin/android-sdk-linux/platform-tools
+fi
+
+source ~/.zshaliases
+#
+export VAGRANT_DEFAULT_PROVIDER=virtualbox
+export REACT_EDITOR=vim
+
 # zstyle :omz:plugins:ssh-agent lifetime 4h
 zstyle :omz:plugins:ssh-agent identities id_ed25519
 
 plugins=(ssh-agent)
-source "/etc/zsh/plugins/oh-my-zsh/oh-my-zsh.sh"
+source $ZSH/oh-my-zsh.sh
+
+# GPG key, copied from https://help.github.com/articles/telling-git-about-your-gpg-key/
+export GPG_TTY=$(tty)
+
+# In order for gpg to find gpg-agent, gpg-agent must be running,
+# and there must be an env variable pointing GPG to the gpg-agent socket.
+# This little script, which must be sourced
+# in your shell's init script (ie, .bash_profile, .zshrc, whatever),
+# will either start gpg-agent or set up the
+# GPG_AGENT_INFO variable if it's already running.
+
+# Add the following
+if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ]; then
+    source ~/.gnupg/.gpg-agent-info
+    export GPG_AGENT_INFO
+else
+    eval $(gpg-agent --daemon)
+fi
+
+if [ $ASCIINEMA_REC = "1" ]; then
+    export PS1='$ '
+fi
