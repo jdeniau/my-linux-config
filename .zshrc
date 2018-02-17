@@ -87,7 +87,9 @@ if [ -d ~/bin/android-sdk-linux/ ]; then
     export PATH=$PATH:~/bin/android-sdk-linux/platform-tools
 fi
 
-source ~/.zshaliases
+if [ -f ~/.zshaliases ]; then
+    source ~/.zshaliases
+fi
 #
 export VAGRANT_DEFAULT_PROVIDER=virtualbox
 export REACT_EDITOR=vim
