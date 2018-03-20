@@ -118,6 +118,6 @@ else
     eval $(gpg-agent --daemon)
 fi
 
-if [ $ASCIINEMA_REC = "1" ]; then
+if [ "$ASCIINEMA_REC" = "1" ]; then
     export PS1='$ '
 fi
