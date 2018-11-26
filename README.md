@@ -37,3 +37,7 @@ curl
 zsh (+ oh my zsh)
 tmux
 ```
+
+## Vim specific
+
+See https://github.com/jdeniau/.vim
