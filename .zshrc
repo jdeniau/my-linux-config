@@ -13,6 +13,8 @@ alias cdw='cd ~/code/website/'
 alias g=git
 if [ -x "$(command -v nvim)" ]; then
     alias v='nvim .'
+    export VISUAL=nvim
+    export EDITOR="$VISUAL"
 else
     alias v='vim .'
 fi
@@ -121,3 +123,9 @@ fi
 if [ "$ASCIINEMA_REC" = "1" ]; then
     export PS1='$ '
 fi
+
+
+# Use local file for specific configuration
+# if [ -f ~/.zshrc.local ]; then
+#     source ~/.zshrc.local
+# fi
