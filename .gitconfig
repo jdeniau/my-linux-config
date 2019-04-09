@@ -4,6 +4,7 @@
     autocrlf = input
 
 [alias]
+    git = !git $1 # make `git git status` work https://twitter.com/iamtzi/status/1112088211755597827
     st = status
     co = commit
     lg = log --graph --all --format=format:'%C(blue)%h%C(reset) - %C(cyan)%aD%C(reset) %C(green)(%ar)%C(reset)%C(yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(white)— %an%C(reset)' --abbrev-commit
