@@ -99,7 +99,7 @@ export REACT_EDITOR=vim
 # zstyle :omz:plugins:ssh-agent lifetime 4h
 zstyle :omz:plugins:ssh-agent identities id_ed25519
 
-plugins=(ssh-agent)
+plugins=(ssh-agent symfony2 zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # GPG key, copied from https://help.github.com/articles/telling-git-about-your-gpg-key/
@@ -126,6 +126,6 @@ fi
 
 
 # Use local file for specific configuration
-# if [ -f ~/.zshrc.local ]; then
-#     source ~/.zshrc.local
-# fi
+if [ -f ~/.zshrc.local ]; then
+    source ~/.zshrc.local
+fi
