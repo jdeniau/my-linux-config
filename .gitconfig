@@ -47,3 +47,7 @@
     insteadOf = gh:
 [url "git@bitbucket.org:"]
     insteadOf = bb:
+[fetch]
+	prune = true
+[diff]
+	colorMoved = zebra
