@@ -49,24 +49,43 @@ function git-branch-delete {
     fi
 
     currentbranch=`git branch | grep "^* " | sed "s/* //"`
+    mainbranch="master"
+    git rev-parse --verify master > /dev/null 2> /dev/null
+    if [ $? -eq 0 ]
+    then
+        # master branch does exists
+    else
+        # master branch does not exist, test "main"
+        git rev-parse --verify main > /dev/null 2> /dev/null
+        if [ $? -eq 0 ]
+        then
+            # main branch does exists
+            mainbranch="main"
+        else
+            # main branch does not exist, test "main"
+            echo "${fg[red]}Neither main or master branch exists${reset_color}"
+	    return
+        fi
+    fi
+
     if [ $1 ]
     then
         todelbranch=$1
         gotobranch=$currentbranch
     else
         todelbranch=$currentbranch
-        gotobranch="master"
+        gotobranch=$mainbranch
     fi
 
-    if [ "$todelbranch" = "master" ]
+    if [ "$todelbranch" = $mainbranch ]
     then
-        echo "${fg[green]}You can not delete branch master${reset_color}"
+        echo "${fg[green]}You can not delete branch $mainbranch${reset_color}"
         return
     fi
 
-    git checkout master
+    git checkout $mainbranch
     git fetch --prune
-    git merge origin/master
+    git merge origin/$mainbranch
     git branch -d $todelbranch
     git push origin --delete $todelbranch
     git checkout $gotobranch
