@@ -93,6 +93,9 @@ function git-branch-delete {
 
 stty -ixon
 
+# Add local path
+export PATH=~/.local/bin/:$PATH
+
 if [ -x "$(command -v npm)" ] || [ -x "$(command -v yarn)" ]; then
     export PATH=$PATH:./node_modules/.bin
 fi

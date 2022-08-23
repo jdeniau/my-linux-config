@@ -13,8 +13,8 @@
     lt      = "!bash -c 'git tag | cut -dv -f 2 | sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n | tail -n 1'"
     composer = commit -m 'update composer' composer.*
     pushtags = push --tags
-    ptom = push origin master --tags
-    syncbr = "!bash -c 'git fetch --prune && git branch --merged| grep -v master | xargs -n 1 git branch -d'"
+    ptom = push origin HEAD --tags
+    syncbr = "!bash -c 'git fetch --prune && git branch --merged | grep -v main | grep -v master | xargs -n 1 git branch -d'"
     changelog = "!f() { git commit CHANGELOG.md -m \"update changelog for $(git lasttag)\"; }; f"
 
 [color]
@@ -51,3 +51,5 @@
 	prune = true
 [diff]
 	colorMoved = zebra
+[push]
+	autoSetupRemote = true
