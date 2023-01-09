@@ -7,7 +7,7 @@ alias cin='composer install'
 alias ccat='pygmentize -O style=monokai -f console256 -g'
 
 alias cdt='cd ~/code/ticketing/'
-alias cdt='cd ~/code/desk/'
+alias cdd='cd ~/code/desk/'
 
 alias g=git
 if [ -x "$(command -v nvim)" ]; then
