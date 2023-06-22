@@ -150,3 +150,6 @@ fi
 if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
 fi
+
+# Fixes issue with VSCode. See https://github.com/microsoft/vscode/issues/168396#issuecomment-1343000046
+HISTFILE="$HOME/.zhistory"
