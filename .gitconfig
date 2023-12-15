@@ -16,6 +16,8 @@
     ptom = push origin HEAD --tags
     syncbr = "!bash -c 'git fetch --prune && git branch --merged | grep -v main | grep -v master | xargs -n 1 git branch -d'"
     changelog = "!f() { git commit CHANGELOG.md -m \"update changelog for $(git lasttag)\"; }; f"
+    diff-side="-c delta.side-by-side=true diff"
+    fixup="!f() { git commit --fixup $1 && GIT_SEQUENCE_EDITOR=: git rebase -i $1~1 --autosquash; }; f"
 
 [color]
     ui = auto
