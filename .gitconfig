@@ -55,3 +55,5 @@
 	colorMoved = zebra
 [push]
 	autoSetupRemote = true
+[rebase]
+	autosquash = true
