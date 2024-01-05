@@ -27,18 +27,18 @@ _symfony_console () {
 
 alias sfcc='$(_symfony_console) cache:clear'
 
-update_auth_sock() {
-    local socket_path="$(tmux show-environment | sed -n 's/^SSH_AUTH_SOCK=//p')"
-
-    if ! [[ "$socket_path" ]]; then
-        echo 'no socket path' >&2
-        return 1
-    else
-        export SSH_AUTH_SOCK="$socket_path"
-    fi
-}
-
-update_auth_sock
+# update_auth_sock() {
+#     local socket_path="$(tmux show-environment | sed -n 's/^SSH_AUTH_SOCK=//p')"
+# 
+#     if ! [[ "$socket_path" ]]; then
+#         echo 'no socket path' >&2
+#         return 1
+#     else
+#         export SSH_AUTH_SOCK="$socket_path"
+#     fi
+# }
+# 
+# update_auth_sock
 
 function git-branch-delete {
     if [ ! -d .git ]
@@ -118,9 +118,9 @@ export VAGRANT_DEFAULT_PROVIDER=virtualbox
 export REACT_EDITOR=vim
 
 # zstyle :omz:plugins:ssh-agent lifetime 4h
-zstyle :omz:plugins:ssh-agent identities id_ed25519
+# zstyle :omz:plugins:ssh-agent identities id_ed25519
 
-plugins=(ssh-agent symfony2 zsh-syntax-highlighting)
+plugins=(symfony2 zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # GPG key, copied from https://help.github.com/articles/telling-git-about-your-gpg-key/
