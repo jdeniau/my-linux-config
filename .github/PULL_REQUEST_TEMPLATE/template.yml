@@ -1,0 +1,28 @@
+- type: textarea
+  attributes:
+    label: Comportement actuel
+    description: Que se passe-t-il actuellement qui nécessite de changer ce code ?
+    placeholder: "Exemple : Quand je fais xxx, cela déclenche l'erreur yyy."
+- type: textarea
+  attributes:
+    label: Nouveau comportement
+    description: Que se passe-t-il maintenant avec cette nouvelle portion de code ?
+    placeholder: "Exemple : le fait de traiter xxx, fait que l'erreur yyy ne se produit plus."
+- type: input
+  id: clickupId
+  attributes:
+    label: Tache Clickup
+    description: Identifiant de la tache clickup
+    placeholder: #clickupTicketId
+    value: #
+- type: textarea
+  attributes:
+    label: Dépendances (pull requests)
+    description: Cette PR dépend-elle d'autre PR ?
+    placeholder: https://github.com/mapado/repo/pull/123
+    
+- type: markdown
+  attributes:
+    label: Autres informations
+    description: Si vous avez besoin d'ajouter d'autres informations pour la compréhension de cette PR
+  
