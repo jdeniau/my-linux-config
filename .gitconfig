@@ -11,7 +11,7 @@
 
     lasttag = "!bash -c 'git tag | cut -dv -f 2 | sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n | tail -n 1'"
     lt      = "!bash -c 'git tag | cut -dv -f 2 | sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n | tail -n 1'"
-    latest-branches = "!bash -c \"git reflog | grep 'checkout: moving' | awk -F ' to ' '{print \\$2}' | head -n 10\""
+    latest-branches = "!bash -c \"git reflog | grep 'checkout: moving' | awk -F ' to ' '{print \\$2}' | awk '!seen[\\$0]++' | head -n 20\""
 
     composer = commit -m 'update composer' composer.*
     pushtags = push --tags
